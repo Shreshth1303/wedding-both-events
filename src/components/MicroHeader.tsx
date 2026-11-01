@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Volume2, VolumeX, Menu, X } from 'lucide-react';
 import { EVENTS_DATA } from '../data/invitationData';
-import { ambientAudio } from '../utils/audio';
+import { ambientAudio, type AudioState } from '../utils/audio';
 
 interface MicroHeaderProps {
-  onNavigateTo404?: () => void;
+  // Navigation is strictly section-based for visitors
 }
 
 interface TimeLeft {
@@ -32,14 +32,20 @@ function calculateTimeLeft(targetIso: string): TimeLeft {
   return { days, hours, minutes, seconds, isPast: false };
 }
 
-export const MicroHeader: React.FC<MicroHeaderProps> = ({
-  onNavigateTo404
-}) => {
+export const MicroHeader: React.FC<MicroHeaderProps> = () => {
   const [nikahTime, setNikahTime] = useState<TimeLeft>(() => calculateTimeLeft(EVENTS_DATA.nikah.isoDate));
   const [receptionTime, setReceptionTime] = useState<TimeLeft>(() => calculateTimeLeft(EVENTS_DATA.reception.isoDate));
-  const [isAudioActive, setIsAudioActive] = useState<boolean>(!ambientAudio.getMuted());
+  const [audioState, setAudioState] = useState<AudioState>(() => ambientAudio.getState());
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [activeEvent, setActiveEvent] = useState<'nikah' | 'reception'>('nikah');
+
+  // Synchronize audio playback state with single AmbientAudioController instance
+  useEffect(() => {
+    const unsubscribe = ambientAudio.subscribe((state) => {
+      setAudioState(state);
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -58,8 +64,7 @@ export const MicroHeader: React.FC<MicroHeaderProps> = ({
   }, []);
 
   const handleAudioToggle = () => {
-    const unmuted = ambientAudio.toggleMute();
-    setIsAudioActive(unmuted);
+    ambientAudio.togglePlay();
   };
 
   const pad = (n: number) => (n < 10 ? '0' + n : n);
@@ -159,31 +164,44 @@ export const MicroHeader: React.FC<MicroHeaderProps> = ({
 
         {/* Right: Nav Links & Audio Ambiance */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          {/* Desktop Nav Links */}
-          <nav className="hidden xl:flex items-center gap-4 text-[10px] uppercase font-mono tracking-[0.16em] text-[#F5F2EB]/70">
+          {/* Desktop Nav Links (Clean, visitor-facing sections only) */}
+          <nav className="hidden xl:flex items-center gap-5 text-[10px] uppercase font-mono tracking-[0.16em] text-[#F5F2EB]/70">
             <a href="#solemnization" className="hover:text-[#B38B59] transition-colors">01. Solemnization</a>
             <a href="#celebration" className="hover:text-[#B38B59] transition-colors">02. Celebration</a>
             <a href="#concierge" className="hover:text-[#B38B59] transition-colors">03. Destination Guide</a>
-            {onNavigateTo404 && (
-              <button 
-                onClick={onNavigateTo404} 
-                className="hover:text-[#B38B59] opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
-                title="View 404 Editorial Archive Folio"
-              >
-                Folio 404
-              </button>
-            )}
           </nav>
 
           {/* Audio Ambiance Controller */}
           <button
             onClick={handleAudioToggle}
-            className={`p-1.5 rounded-full border border-[rgba(179,139,89,0.3)] transition-colors cursor-pointer ${
-              isAudioActive ? 'bg-[#B38B59]/20 text-[#B38B59]' : 'text-stone-400 hover:text-stone-200'
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border transition-all cursor-pointer select-none ${
+              audioState.isPlaying 
+                ? 'bg-[#B38B59]/20 border-[#B38B59] text-[#B38B59] shadow-[0_0_12px_rgba(179,139,89,0.25)]' 
+                : 'border-[rgba(179,139,89,0.3)] text-stone-400 hover:text-stone-200'
             }`}
-            title={isAudioActive ? 'Mute ambient harmonic chime' : 'Enable ambient harmonic chime'}
+            title={audioState.isPlaying ? "Pause background music" : "Play Canon in D background music"}
+            aria-label={audioState.isPlaying ? "Pause melodious background music" : "Play melodious background music"}
           >
-            {isAudioActive ? <Volume2 size={15} /> : <VolumeX size={15} />}
+            {audioState.isPlaying ? (
+              <>
+                <Volume2 size={14} className="shrink-0" />
+                <span className="flex items-end gap-[2px] h-2.5" aria-hidden="true">
+                  <span className="w-[2px] h-2 bg-[#B38B59] animate-pulse rounded-full" />
+                  <span className="w-[2px] h-3 bg-[#B38B59] animate-pulse rounded-full" style={{ animationDelay: '180ms' }} />
+                  <span className="w-[2px] h-1.5 bg-[#B38B59] animate-pulse rounded-full" style={{ animationDelay: '360ms' }} />
+                </span>
+                <span className="hidden sm:inline font-mono text-[9px] uppercase tracking-wider text-[#B38B59]">
+                  Melody
+                </span>
+              </>
+            ) : (
+              <>
+                <VolumeX size={14} className="shrink-0" />
+                <span className="hidden sm:inline font-mono text-[9px] uppercase tracking-wider text-stone-400">
+                  Music
+                </span>
+              </>
+            )}
           </button>
 
           {/* Mobile Menu Toggle Button */}
@@ -197,13 +215,13 @@ export const MicroHeader: React.FC<MicroHeaderProps> = ({
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu (Strictly visitor-facing legitimate sections) */}
       {isMobileMenuOpen && (
         <div className="xl:hidden bg-[#1A1D20] border-t border-[rgba(179,139,89,0.2)] px-4 py-3 flex flex-col gap-2.5 font-mono text-xs uppercase tracking-wider text-[#F5F2EB]/80 animate-fadeIn">
           <a 
             href="#solemnization" 
             onClick={() => setIsMobileMenuOpen(false)}
-            className="py-1.5 hover:text-[#B38B59] flex items-center justify-between border-b border-white/5"
+            className="py-2 hover:text-[#B38B59] flex items-center justify-between border-b border-white/5"
           >
             <span>01. Solemnization (Nikah)</span>
             <span className="text-[10px] text-[#B38B59]">Nashik</span>
@@ -211,7 +229,7 @@ export const MicroHeader: React.FC<MicroHeaderProps> = ({
           <a 
             href="#celebration" 
             onClick={() => setIsMobileMenuOpen(false)}
-            className="py-1.5 hover:text-[#B38B59] flex items-center justify-between border-b border-white/5"
+            className="py-2 hover:text-[#B38B59] flex items-center justify-between border-b border-white/5"
           >
             <span>02. Celebration (Walima)</span>
             <span className="text-[10px] text-[#B38B59]">Thane</span>
@@ -219,21 +237,10 @@ export const MicroHeader: React.FC<MicroHeaderProps> = ({
           <a 
             href="#concierge" 
             onClick={() => setIsMobileMenuOpen(false)}
-            className="py-1.5 hover:text-[#B38B59] border-b border-white/5"
+            className="py-2 hover:text-[#B38B59] border-b border-white/5"
           >
             03. Destination &amp; Travel Guide
           </a>
-          {onNavigateTo404 && (
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onNavigateTo404();
-              }}
-              className="py-1.5 text-left text-[11px] text-[#B38B59]/70 hover:text-[#B38B59]"
-            >
-              Archive Folio (404 View)
-            </button>
-          )}
         </div>
       )}
     </header>

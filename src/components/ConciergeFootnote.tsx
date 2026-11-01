@@ -1,14 +1,12 @@
 import React from 'react';
 import { COUPLE_DATA } from '../data/invitationData';
-import { ArrowUp, FileText, MapPin } from 'lucide-react';
+import { ArrowUp, MapPin } from 'lucide-react';
 
 interface ConciergeFootnoteProps {
-  onNavigateTo404?: () => void;
+  // Visitor-facing footer
 }
 
-export const ConciergeFootnote: React.FC<ConciergeFootnoteProps> = ({
-  onNavigateTo404
-}) => {
+export const ConciergeFootnote: React.FC<ConciergeFootnoteProps> = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -28,23 +26,24 @@ export const ConciergeFootnote: React.FC<ConciergeFootnoteProps> = ({
               Guest Route &amp; Destination Guide
             </h2>
           </div>
-          <p className="font-serif italic text-xs sm:text-sm text-[#F5F2EB]/70 max-w-md">
-            Guidance for travel between Mumbai, Thane, and Nashik for the celebrations of Jassim &amp; Shifa.
-          </p>
+
+          <div className="font-mono text-xs text-[#B38B59] flex items-center gap-3">
+            <span>Official Folio Registration: #JS-2027-NW</span>
+          </div>
         </div>
 
-        {/* Intercity Travel Advisory Ledger */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 font-serif text-xs">
+        {/* Dual Venue Navigation Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 text-xs sm:text-sm">
           <div className="bg-[#1A1D20]/70 p-6 border border-[rgba(179,139,89,0.25)] rounded-xs">
             <div className="flex items-center gap-2 text-[#CFAB7A] font-mono text-[10px] uppercase tracking-wider mb-2 font-semibold">
               <MapPin size={14} className="text-[#B38B59]" />
               <span>Nashik Destination Advisory (15 Jan 2027)</span>
             </div>
             <h3 className="font-serif text-lg font-medium text-[#F5F2EB] mb-2">
-              Bagai Banquet, Ashoka Marg
+              The Grand Ballroom, Express Inn
             </h3>
             <p className="text-[#F5F2EB]/75 leading-relaxed">
-              Situated on Ashoka Marg near Ashoka Universal School in Kalpataru Nagar. Dedicated valet parking is available on-site. Guests traveling from Mumbai CSIA (BOM) are advised to budget approximately 3.5 to 4 hours of journey time via NH160 or Samruddhi Mahamarg.
+              Situated directly on Mumbai-Agra National Highway (NH3) near Ambad, Nashik. Dedicated parking concierge and golf cart assistance will greet esteemed guests at the South Portico entrance.
             </p>
           </div>
 
@@ -71,19 +70,9 @@ export const ConciergeFootnote: React.FC<ConciergeFootnoteProps> = ({
           </div>
 
           <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest">
-            {onNavigateTo404 && (
-              <button
-                onClick={onNavigateTo404}
-                className="hover:text-[#CFAB7A] transition-colors cursor-pointer flex items-center gap-1 text-[#B38B59]"
-              >
-                <FileText size={11} />
-                <span>Editorial 404 Folio</span>
-              </button>
-            )}
-
             <button
               onClick={scrollToTop}
-              className="hover:text-[#CFAB7A] transition-colors cursor-pointer flex items-center gap-1"
+              className="hover:text-[#CFAB7A] transition-colors cursor-pointer flex items-center gap-1.5"
             >
               <ArrowUp size={12} />
               <span>Top of Folio</span>
