@@ -183,7 +183,7 @@ export const RsvpConsole: React.FC<RsvpConsoleProps> = ({
                   {eventSelection === 'reception' && "Confirming for the Grand Reception at Welcome Lawns, Thane on Sunday, 17th January 2027."}
                 </span>
                 <span className="font-mono text-[9px] text-[#B38B59] uppercase tracking-wider shrink-0 ml-2">
-                  Act {eventSelection === 'both' ? 'I & II' : eventSelection === 'nikah' ? 'I' : 'II'}
+                  {eventSelection === 'both' ? 'Nikah & Reception' : eventSelection === 'nikah' ? 'Nikah' : 'Reception'}
                 </span>
               </div>
             </div>
@@ -440,7 +440,7 @@ export const RsvpConsole: React.FC<RsvpConsoleProps> = ({
                   {(eventSelection === 'both' || eventSelection === 'nikah') && (
                     <div className="p-3 bg-white border border-[rgba(179,139,89,0.2)]">
                       <span className="font-mono text-[9px] uppercase tracking-wider text-[#B38B59] block">
-                        Event I • Nikah
+                        Nikah Ceremony
                       </span>
                       <h4 className="font-serif text-lg font-medium text-[#1A1D20]">Bagai Banquet</h4>
                       <p className="font-serif text-xs text-[#1A1D20]/75">Friday, 15th January 2027 • 11:30 AM</p>
@@ -451,7 +451,7 @@ export const RsvpConsole: React.FC<RsvpConsoleProps> = ({
                   {(eventSelection === 'both' || eventSelection === 'reception') && (
                     <div className="p-3 bg-white border border-[rgba(179,139,89,0.2)]">
                       <span className="font-mono text-[9px] uppercase tracking-wider text-[#B38B59] block">
-                        Event II • Reception
+                        Reception Ceremony
                       </span>
                       <h4 className="font-serif text-lg font-medium text-[#1A1D20]">Welcome Lawns &amp; Banquet</h4>
                       <p className="font-serif text-xs text-[#1A1D20]/75">Sunday, 17th January 2027 • 07:30 PM</p>

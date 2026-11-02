@@ -229,12 +229,12 @@ export const SplitHero: React.FC<SplitHeroProps> = ({ onScrollToEvents }) => {
               {/* Quick Dual Event Folio Pill */}
               <div className="pt-4 grid grid-cols-2 gap-2 text-left font-mono text-[9px] border-t border-[rgba(179,139,89,0.2)] max-w-md mx-auto">
                 <div className="bg-[#F5F2EB] p-2.5 rounded-sm border border-[rgba(179,139,89,0.2)] hover:border-[#B38B59] transition-colors">
-                  <span className="text-[#B38B59] block font-bold uppercase">I. Nikah</span>
+                  <span className="text-[#B38B59] block font-bold uppercase">Nikah</span>
                   <span className="text-[#1A1D20] font-semibold">15 Jan 2027</span>
                   <span className="text-[#1A1D20]/60 block">Nashik</span>
                 </div>
                 <div className="bg-[#F5F2EB] p-2.5 rounded-sm border border-[rgba(179,139,89,0.2)] hover:border-[#B38B59] transition-colors">
-                  <span className="text-[#B38B59] block font-bold uppercase">II. Reception</span>
+                  <span className="text-[#B38B59] block font-bold uppercase">Reception</span>
                   <span className="text-[#1A1D20] font-semibold">17 Jan 2027</span>
                   <span className="text-[#1A1D20]/60 block">Thane</span>
                 </div>
@@ -249,7 +249,7 @@ export const SplitHero: React.FC<SplitHeroProps> = ({ onScrollToEvents }) => {
               onClick={onScrollToEvents}
               className="group inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#1A1D20] text-[#F5F2EB] font-mono text-[11px] uppercase tracking-[0.18em] rounded-sm hover:bg-[#B38B59] transition-all cursor-pointer shadow-md active:scale-95"
             >
-              <span>Explore Gatefold Folios</span>
+              <span>Explore Invitations</span>
               <ArrowDown size={14} className="group-hover:translate-y-1 transition-transform" />
             </button>
 
