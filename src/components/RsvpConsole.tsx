@@ -440,7 +440,7 @@ export const RsvpConsole: React.FC<RsvpConsoleProps> = ({
                   {(eventSelection === 'both' || eventSelection === 'nikah') && (
                     <div className="p-3 bg-white border border-[rgba(179,139,89,0.2)]">
                       <span className="font-mono text-[9px] uppercase tracking-wider text-[#B38B59] block">
-                        Event I • Nikah Solemnization
+                        Event I • Nikah
                       </span>
                       <h4 className="font-serif text-lg font-medium text-[#1A1D20]">Bagai Banquet</h4>
                       <p className="font-serif text-xs text-[#1A1D20]/75">Friday, 15th January 2027 • 11:30 AM</p>
@@ -451,7 +451,7 @@ export const RsvpConsole: React.FC<RsvpConsoleProps> = ({
                   {(eventSelection === 'both' || eventSelection === 'reception') && (
                     <div className="p-3 bg-white border border-[rgba(179,139,89,0.2)]">
                       <span className="font-mono text-[9px] uppercase tracking-wider text-[#B38B59] block">
-                        Event II • Grand Reception
+                        Event II • Reception
                       </span>
                       <h4 className="font-serif text-lg font-medium text-[#1A1D20]">Welcome Lawns &amp; Banquet</h4>
                       <p className="font-serif text-xs text-[#1A1D20]/75">Sunday, 17th January 2027 • 07:30 PM</p>

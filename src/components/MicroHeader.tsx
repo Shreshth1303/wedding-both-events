@@ -113,13 +113,13 @@ export const MicroHeader: React.FC<MicroHeaderProps> = () => {
 
             <div className="w-[1px] h-3.5 bg-[rgba(179,139,89,0.35)]" />
 
-            {/* Walima Display */}
+            {/* Reception Display */}
             <div className="flex items-center gap-2 whitespace-nowrap font-mono text-[11px]">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span className="text-[#CFAB7A] font-bold uppercase tracking-wider text-[10px]">Walima:</span>
+              <span className="text-[#CFAB7A] font-bold uppercase tracking-wider text-[10px]">Reception:</span>
               <span className="text-white font-mono tracking-tight tabular-nums font-medium">
                 {receptionTime.days}d {pad(receptionTime.hours)}h {pad(receptionTime.minutes)}m {pad(receptionTime.seconds)}s
               </span>
@@ -132,7 +132,7 @@ export const MicroHeader: React.FC<MicroHeaderProps> = () => {
             <button
               onClick={() => setActiveEvent(prev => (prev === 'nikah' ? 'reception' : 'nikah'))}
               className="flex items-center gap-1.5 sm:gap-2 cursor-pointer select-none text-[10px] sm:text-[11px] font-mono tracking-tight"
-              title="Tap to switch countdown between Nikah & Walima"
+              title="Tap to switch countdown between Nikah & Reception"
             >
               <span className="relative flex h-1.5 w-1.5">
                 <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${
@@ -144,7 +144,7 @@ export const MicroHeader: React.FC<MicroHeaderProps> = () => {
               </span>
 
               <span className="text-[#B38B59] uppercase font-bold tracking-wider text-[9px] sm:text-[10px]">
-                {activeEvent === 'nikah' ? 'Nikah (Nashik)' : 'Walima (Thane)'}:
+                {activeEvent === 'nikah' ? 'Nikah (Nashik)' : 'Reception (Thane)'}:
               </span>
 
               <span className="text-white tabular-nums font-medium">
@@ -166,8 +166,8 @@ export const MicroHeader: React.FC<MicroHeaderProps> = () => {
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {/* Desktop Nav Links (Clean, visitor-facing sections only) */}
           <nav className="hidden xl:flex items-center gap-5 text-[10px] uppercase font-mono tracking-[0.16em] text-[#F5F2EB]/70">
-            <a href="#solemnization" className="hover:text-[#B38B59] transition-colors">01. Solemnization</a>
-            <a href="#celebration" className="hover:text-[#B38B59] transition-colors">02. Celebration</a>
+            <a href="#nikah" className="hover:text-[#B38B59] transition-colors">01. Nikah</a>
+            <a href="#reception" className="hover:text-[#B38B59] transition-colors">02. Reception</a>
             <a href="#concierge" className="hover:text-[#B38B59] transition-colors">03. Destination Guide</a>
           </nav>
 
@@ -219,19 +219,19 @@ export const MicroHeader: React.FC<MicroHeaderProps> = () => {
       {isMobileMenuOpen && (
         <div className="xl:hidden bg-[#1A1D20] border-t border-[rgba(179,139,89,0.2)] px-4 py-3 flex flex-col gap-2.5 font-mono text-xs uppercase tracking-wider text-[#F5F2EB]/80 animate-fadeIn">
           <a 
-            href="#solemnization" 
+            href="#nikah" 
             onClick={() => setIsMobileMenuOpen(false)}
             className="py-2 hover:text-[#B38B59] flex items-center justify-between border-b border-white/5"
           >
-            <span>01. Solemnization (Nikah)</span>
+            <span>01. Nikah</span>
             <span className="text-[10px] text-[#B38B59]">Nashik</span>
           </a>
           <a 
-            href="#celebration" 
+            href="#reception" 
             onClick={() => setIsMobileMenuOpen(false)}
             className="py-2 hover:text-[#B38B59] flex items-center justify-between border-b border-white/5"
           >
-            <span>02. Celebration (Walima)</span>
+            <span>02. Reception</span>
             <span className="text-[10px] text-[#B38B59]">Thane</span>
           </a>
           <a 

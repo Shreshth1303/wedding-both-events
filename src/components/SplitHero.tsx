@@ -57,9 +57,9 @@ export const SplitHero: React.FC<SplitHeroProps> = ({
           <span>Folio N° 01 / Haute Couture Ledger</span>
         </div>
         <div className="hidden md:flex items-center gap-4 text-[#1A1D20]/60">
-          <span>Solemnization: 15.01.2027</span>
+          <span>Nikah: 15.01.2027</span>
           <span>•</span>
-          <span>Celebration: 17.01.2027</span>
+          <span>Reception: 17.01.2027</span>
           <span>•</span>
           <span>Maharashtra, India</span>
         </div>
@@ -110,7 +110,7 @@ export const SplitHero: React.FC<SplitHeroProps> = ({
             </h1>
 
             <p className="mt-5 sm:mt-7 font-serif text-base sm:text-lg lg:text-xl text-[#1A1D20]/75 max-w-xl leading-relaxed italic">
-              Two families unite, two cities welcome an auspicious chapter. An editorial journey spanning the sacred Nikah in Nashik and the grand Walima in Thane.
+              Two families unite, two cities welcome an auspicious chapter. An editorial journey spanning the sacred Nikah in Nashik and the grand Reception in Thane.
             </p>
 
             {/* Mobile & Desktop Live Countdown Showcase Card */}
@@ -130,7 +130,7 @@ export const SplitHero: React.FC<SplitHeroProps> = ({
                 <div className="bg-[#FAF8F5] p-3 border border-[rgba(179,139,89,0.2)] rounded-xs">
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="font-mono text-[9px] uppercase tracking-wider text-[#B38B59] font-bold">
-                      Act I • Nikah
+                      Nikah
                     </span>
                     <span className="font-mono text-[9px] text-[#1A1D20]/50">15 Jan 2027</span>
                   </div>
@@ -142,11 +142,11 @@ export const SplitHero: React.FC<SplitHeroProps> = ({
                   </div>
                 </div>
 
-                {/* Walima Countdown Block */}
+                {/* Reception Countdown Block */}
                 <div className="bg-[#FAF8F5] p-3 border border-[rgba(179,139,89,0.2)] rounded-xs">
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="font-mono text-[9px] uppercase tracking-wider text-[#B38B59] font-bold">
-                      Act II • Walima
+                      Reception
                     </span>
                     <span className="font-mono text-[9px] text-[#1A1D20]/50">17 Jan 2027</span>
                   </div>

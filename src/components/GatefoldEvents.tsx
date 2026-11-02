@@ -44,7 +44,7 @@ export const GatefoldEvents: React.FC = () => {
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 bg-[#B38B59] inline-block animate-ping" />
             <span className="uppercase tracking-[0.25em] text-[#B38B59] font-bold">
-              The Dual-Event Gatefold // Act I &amp; Act II
+              The Dual-Event Gatefold // Nikah &amp; Reception
             </span>
           </div>
 
@@ -76,15 +76,18 @@ export const GatefoldEvents: React.FC = () => {
       <div className="w-full max-w-full grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-[rgba(179,139,89,0.25)]">
         
         {/* ======================================================== */}
-        {/* LEFT PILLAR: "THE SOLEMNIZATION" (Nikah, Nashik)         */}
+        {/* LEFT PILLAR: NIKAH (Nashik)                              */}
         {/* ======================================================== */}
         <article 
-          id="solemnization"
+          id="nikah"
           className="relative p-6 sm:p-10 md:p-14 lg:p-16 bg-[#FAF8F5] text-[#1A1D20] bg-arabesque-pattern flex flex-col justify-between"
         >
+          {/* Section anchor alias */}
+          <div id="solemnization" className="absolute -top-16" />
+
           {/* Architectural Registration crosshair */}
           <div className="absolute top-4 left-4 font-mono text-[9px] text-[#B38B59] tracking-widest uppercase">
-            FOLIO 02 // ACT I
+            FOLIO 02 // NIKAH
           </div>
           <div className="absolute top-4 right-4 font-mono text-[9px] text-[#B38B59] tracking-widest uppercase">
             NASHIK, MH
@@ -94,7 +97,7 @@ export const GatefoldEvents: React.FC = () => {
             {/* Header & Pillar Title */}
             <div className="mb-6 pt-4">
               <span className="inline-block px-2.5 py-1 bg-[#F5F2EB] border border-[#B38B59]/40 text-[#B38B59] font-mono text-[10px] uppercase tracking-[0.25em] mb-3">
-                Act I • The Solemnization
+                Nikah Ceremony
               </span>
               <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#1A1D20] font-light tracking-tight leading-tight">
                 The Nikah Ceremony
@@ -160,28 +163,6 @@ export const GatefoldEvents: React.FC = () => {
                 </button>
               </div>
             </div>
-
-            {/* Nikah Ceremonial Schedule */}
-            <div className="mb-8">
-              <h4 className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#B38B59] mb-4 flex items-center gap-2">
-                <span className="w-4 h-[1px] bg-[#B38B59]" />
-                <span>Ceremonial Itinerary</span>
-              </h4>
-
-              <div className="space-y-3">
-                {EVENTS_DATA.nikah.itinerary.map((step, idx) => (
-                  <div key={idx} className="flex gap-4 p-3 bg-white/60 border-l-2 border-[#B38B59] transition-all hover:bg-white hover:translate-x-1 shadow-2xs">
-                    <span className="font-mono text-xs font-semibold text-[#B38B59] shrink-0 pt-0.5">
-                      {step.time}
-                    </span>
-                    <div>
-                      <h5 className="font-serif text-sm font-semibold text-[#1A1D20]">{step.label}</h5>
-                      <p className="font-serif text-xs text-[#1A1D20]/75 mt-0.5">{step.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Bottom Ceremonial Note */}
@@ -197,15 +178,18 @@ export const GatefoldEvents: React.FC = () => {
         </article>
 
         {/* ======================================================== */}
-        {/* RIGHT PILLAR: "THE CELEBRATION" (Reception, Thane)       */}
+        {/* RIGHT PILLAR: RECEPTION (Thane)                         */}
         {/* ======================================================== */}
         <article 
-          id="celebration"
+          id="reception"
           className="relative p-6 sm:p-10 md:p-14 lg:p-16 bg-[#1A1D20] text-[#F5F2EB] bg-arabesque-dark flex flex-col justify-between"
         >
+          {/* Section anchor alias */}
+          <div id="celebration" className="absolute -top-16" />
+
           {/* Architectural Registration crosshair */}
           <div className="absolute top-4 left-4 font-mono text-[9px] text-[#B38B59] tracking-widest uppercase">
-            FOLIO 03 // ACT II
+            FOLIO 03 // RECEPTION
           </div>
           <div className="absolute top-4 right-4 font-mono text-[9px] text-[#B38B59] tracking-widest uppercase">
             THANE, MH
@@ -215,7 +199,7 @@ export const GatefoldEvents: React.FC = () => {
             {/* Header & Pillar Title */}
             <div className="mb-6 pt-4">
               <span className="inline-block px-2.5 py-1 bg-[#24282D] border border-[#B38B59]/40 text-[#CFAB7A] font-mono text-[10px] uppercase tracking-[0.25em] mb-3">
-                Act II • The Celebration
+                Reception Ceremony
               </span>
               <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#F5F2EB] font-light tracking-tight leading-tight">
                 The Grand Reception
@@ -279,28 +263,6 @@ export const GatefoldEvents: React.FC = () => {
                   <CalendarIcon size={13} className="text-[#CFAB7A]" />
                   <span>Add to Calendar (.ics)</span>
                 </button>
-              </div>
-            </div>
-
-            {/* Reception Ceremonial Schedule */}
-            <div className="mb-8">
-              <h4 className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#CFAB7A] mb-4 flex items-center gap-2">
-                <span className="w-4 h-[1px] bg-[#CFAB7A]" />
-                <span>Evening Order of Events</span>
-              </h4>
-
-              <div className="space-y-3">
-                {EVENTS_DATA.reception.itinerary.map((step, idx) => (
-                  <div key={idx} className="flex gap-4 p-3 bg-[#141618]/80 border-l-2 border-[#B38B59] transition-all hover:bg-[#141618] hover:translate-x-1 shadow-2xs">
-                    <span className="font-mono text-xs font-semibold text-[#CFAB7A] shrink-0 pt-0.5">
-                      {step.time}
-                    </span>
-                    <div>
-                      <h5 className="font-serif text-sm font-semibold text-[#F5F2EB]">{step.label}</h5>
-                      <p className="font-serif text-xs text-[#F5F2EB]/70 mt-0.5">{step.description}</p>
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
