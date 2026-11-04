@@ -111,7 +111,7 @@ export const SplitHero: React.FC<SplitHeroProps> = ({ onScrollToEvents }) => {
 
           {/* 4. Centered Poetic Lead */}
           <p className="mt-4 sm:mt-6 font-serif text-base sm:text-lg lg:text-xl text-[#1A1D20]/75 max-w-2xl leading-relaxed italic mx-auto text-center">
-            Two families unite, two cities welcome an auspicious chapter. An editorial journey spanning the sacred Nikah in Nashik and the grand Reception in Thane.
+            Two families unite to welcome an auspicious chapter. An editorial journey celebrating the sacred Nikah and the grand Reception.
           </p>
 
           {/* 5. Live Ceremonial Countdown Showcase Card (Centered) */}
